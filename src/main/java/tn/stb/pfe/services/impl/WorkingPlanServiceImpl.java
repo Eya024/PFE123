@@ -60,6 +60,7 @@ public class WorkingPlanServiceImpl implements WorkingPlanService {
 
         // Save the working plan to the database using the workingPlanRepository
         workingPlanRepository.save(workingPlan);
+        provider.setWorkingPlan(workingPlan);
         providerRepository.save(provider);
     }
 

@@ -21,7 +21,7 @@ import java.time.LocalTime;
 public class WorkingPlan {
 
     @Id
-    @Column(name = "id_provider")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @OneToOne(mappedBy = "workingPlan", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

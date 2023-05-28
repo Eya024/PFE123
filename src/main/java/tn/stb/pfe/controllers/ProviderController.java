@@ -49,6 +49,12 @@ public class ProviderController {
         return ResponseEntity.ok("Provider created with working plan");
     }
 
+    @PostMapping("update")
+    public ResponseEntity<String> updateProviderWithWorkingPlan(@RequestBody Provider provider) {
+        workingPlanService.updateWorkingPlan(provider.getWorkingPlan());
+        return ResponseEntity.ok("Provider updated with working plan");
+    }
+
    /* @GetMapping("/{id}")
     public Model showProviderDetails(@PathVariable("id") int providerId, Model model) {
             model.addAttribute("user", userService.getProviderById(providerId));
