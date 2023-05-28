@@ -10,7 +10,10 @@ import tn.stb.pfe.services.UserService;
 import tn.stb.pfe.services.WorkService;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import javax.websocket.server.PathParam;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -40,9 +43,12 @@ public class AppointmentController {
     /* Book appointment */
     //customer
     @ResponseBody
-    @PostMapping("/book")
-    public void processAppointmentBookingRequest(@RequestParam("workId") int workId, @RequestParam("customerId") int customerId, @RequestParam("start") String start) {
-         appointmentService.bookAppointment(workId, customerId, LocalDateTime.parse(start));
+    @PostMapping("/book/{workId}/{customerId}/{start}")
+    public void processAppointmentBookingRequest(@PathVariable("workId") int workId, @PathVariable("customerId") int customerId, @PathVariable("start") String start) {
+        // convert string to localdatetime 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        LocalDateTime time = LocalDateTime.parse(start, formatter);
+         appointmentService.bookAppointment(workId, customerId, time);
     }
 
 

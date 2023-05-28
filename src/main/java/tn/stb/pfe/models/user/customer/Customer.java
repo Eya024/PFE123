@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +27,7 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name = "id_customer")
 public class Customer extends User {
 
+    @JsonIgnore
     @OneToMany(mappedBy = "customer")
     private List<Appointment> appointments;
 

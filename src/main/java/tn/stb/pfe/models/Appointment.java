@@ -2,6 +2,9 @@ package tn.stb.pfe.models;
 
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,9 +42,9 @@ public class Appointment implements Serializable {
     @Column(name = "canceled_at")
     private LocalDateTime canceledAt;
 
-    @OneToOne
-    @JoinColumn(name = "id_canceler")
-    private User canceler;
+    // @OneToOne
+    // @JoinColumn(name = "id_canceler")
+    // private User canceler;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
@@ -51,9 +54,9 @@ public class Appointment implements Serializable {
     @JoinColumn(name = "id_customer")
     private Customer customer;
 
-    @ManyToOne
-    @JoinColumn(name = "id_provider")
-    private Provider provider;
+    // @ManyToOne
+    // @JoinColumn(name = "id_provider")
+    // private Provider provider;
 
     @ManyToOne
     @JoinColumn(name = "id_work")

@@ -35,19 +35,19 @@ public class ExchangeServiceImpl implements ExchangeService {
     @Override
     public List<Appointment> getEligibleAppointmentsForExchange(int appointmentId) {
         Appointment appointmentToExchange = appointmentRepository.getOne(appointmentId);
-        return appointmentRepository.getEligibleAppointmentsForExchange(LocalDateTime.now().plusHours(24), appointmentToExchange.getCustomer().getId(), appointmentToExchange.getProvider().getId(), appointmentToExchange.getWork().getId());
+        return null;
     }
-
+ 
     @Override
     public boolean checkIfExchangeIsPossible(int oldAppointmentId, int newAppointmentId, int userId) {
-        Appointment oldAppointment = appointmentRepository.getOne(oldAppointmentId);
+     /*    Appointment oldAppointment = appointmentRepository.getOne(oldAppointmentId);
         Appointment newAppointment = appointmentRepository.getOne(newAppointmentId);
         if (oldAppointment.getCustomer().getId() == userId) {
             return oldAppointment.getWork().getId().equals(newAppointment.getWork().getId())
                     && oldAppointment.getProvider().getId().equals(newAppointment.getProvider().getId())
                     && oldAppointment.getStart().minusHours(24).isAfter(LocalDateTime.now())
                     && newAppointment.getStart().minusHours(24).isAfter(LocalDateTime.now());
-        }
+        }*/
         return false;
     }
 

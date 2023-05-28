@@ -82,7 +82,7 @@ public class NotificationServiceImpl implements tn.stb.pfe.services.Notification
         String title = "Appointment Rejected";
         String message = appointment.getCustomer().getFirstName() + " " + appointment.getCustomer().getLastName() + "rejected an appointment. Your approval is required";
         String url = "/appointments/" + appointment.getId();
-        newNotification(title, message, url, appointment.getProvider());
+      //  newNotification(title, message, url, appointment.getProvider());
         //if (sendEmail && mailingEnabled) {
             //emailService.sendAppointmentRejectionRequestedNotification(appointment);
         //}
@@ -91,9 +91,9 @@ public class NotificationServiceImpl implements tn.stb.pfe.services.Notification
     @Override
     public void newNewAppointmentScheduledNotification(Appointment appointment/*, boolean sendEmail*/) {
         String title = "New appointment scheduled";
-        String message = "New appointment scheduled with" + appointment.getCustomer().getFirstName() + " " + appointment.getProvider().getLastName() + " on " + appointment.getStart().toString();
+       // String message = "New appointment scheduled with" + appointment.getCustomer().getFirstName() + " " + appointment.getProvider().getLastName() + " on " + appointment.getStart().toString();
         String url = "/appointments/" + appointment.getId();
-        newNotification(title, message, url, appointment.getProvider());
+       // newNotification(title, message, url, appointment.getProvider());
         //if (sendEmail && mailingEnabled) {
             //emailService.sendNewAppointmentScheduledNotification(appointment);
         //}
@@ -104,7 +104,7 @@ public class NotificationServiceImpl implements tn.stb.pfe.services.Notification
         String title = "Appointment Canceled";
         String message = appointment.getCustomer().getFirstName() + " " + appointment.getCustomer().getLastName() + " cancelled appointment scheduled at " + appointment.getStart().toString();
         String url = "/appointments/" + appointment.getId();
-        newNotification(title, message, url, appointment.getProvider());
+      //  newNotification(title, message, url, appointment.getProvider());
         //if (sendEmail && mailingEnabled) {
             //emailService.sendAppointmentCanceledByCustomerNotification(appointment);
         //}
@@ -113,9 +113,9 @@ public class NotificationServiceImpl implements tn.stb.pfe.services.Notification
     @Override
     public void newAppointmentCanceledByProviderNotification(Appointment appointment/*, boolean sendEmail*/) {
         String title = "Appointment Canceled";
-        String message = appointment.getProvider().getFirstName() + " " + appointment.getProvider().getLastName() + " cancelled appointment scheduled at " + appointment.getStart().toString();
-        String url = "/appointments/" + appointment.getId();
-        newNotification(title, message, url, appointment.getCustomer());
+   //     String message = appointment.getProvider().getFirstName() + " " + appointment.getProvider().getLastName() + " cancelled appointment scheduled at " + appointment.getStart().toString();
+      //  String url = "/appointments/" + appointment.getId();
+      // newNotification(title, message, url, appointment.getCustomer());
         //if (sendEmail && mailingEnabled) {
             //emailService.sendAppointmentCanceledByProviderNotification(appointment);
         //}
@@ -180,7 +180,7 @@ public class NotificationServiceImpl implements tn.stb.pfe.services.Notification
         String title = "New chat message";
         String message = "You have new chat message from " + chatMessage.getAuthor().getFirstName() + " regarding appointment scheduled at " + chatMessage.getAppointment().getStart();
         String url = "/appointments/" + chatMessage.getAppointment().getId();
-        newNotification(title, message, url, chatMessage.getAuthor() == chatMessage.getAppointment().getProvider() ? chatMessage.getAppointment().getCustomer() : chatMessage.getAppointment().getProvider());
+     //   newNotification(title, message, url, chatMessage.getAuthor() == chatMessage.getAppointment().getProvider() ? chatMessage.getAppointment().getCustomer() : chatMessage.getAppointment().getProvider());
         //if (sendEmail && mailingEnabled) {
             //emailService.sendNewChatMessageNotification(chatMessage);
         //}

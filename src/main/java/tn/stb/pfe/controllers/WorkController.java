@@ -2,6 +2,7 @@ package tn.stb.pfe.controllers;
 
 import java.util.List;
 
+import org.springframework.http.MediaType;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +39,8 @@ public class WorkController {
         return workService.getWorkById(workId);
     }
 
-    @PostMapping("/new")
+    @ResponseBody
+    @PostMapping(value="/new", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void saveWork(@RequestBody Work works, @RequestParam("providerIds") List<User> providerIds ) {
         works.setProviders(providerIds);
         workService.createNewWork(works);
