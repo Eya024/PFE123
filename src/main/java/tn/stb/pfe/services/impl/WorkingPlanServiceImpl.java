@@ -65,18 +65,18 @@ public class WorkingPlanServiceImpl implements WorkingPlanService {
     }
 
     @Override
-    public void updateWorkingPlan(WorkingPlan updateData) {
-        WorkingPlan workingPlan = workingPlanRepository.getOne(updateData.getId());
-        workingPlan.getMonday().setWorkingHours(updateData.getMonday().getWorkingHours());
-        workingPlan.getTuesday().setWorkingHours(updateData.getTuesday().getWorkingHours());
-        workingPlan.getWednesday().setWorkingHours(updateData.getWednesday().getWorkingHours());
-        workingPlan.getThursday().setWorkingHours(updateData.getThursday().getWorkingHours());
-        workingPlan.getFriday().setWorkingHours(updateData.getFriday().getWorkingHours());
-        workingPlan.getSaturday().setWorkingHours(updateData.getSaturday().getWorkingHours());
-        workingPlan.getSunday().setWorkingHours(updateData.getSunday().getWorkingHours());
+    public void updateWorkingPlan(Provider updateData) {
+
+        WorkingPlan workingPlan = updateData.getWorkingPlan();
+        workingPlan.getMonday().setWorkingHours(workingPlan.getMonday().getWorkingHours());
+        workingPlan.getTuesday().setWorkingHours(workingPlan.getTuesday().getWorkingHours());
+        workingPlan.getWednesday().setWorkingHours(workingPlan.getWednesday().getWorkingHours());
+        workingPlan.getThursday().setWorkingHours(workingPlan.getThursday().getWorkingHours());
+        workingPlan.getFriday().setWorkingHours(workingPlan.getFriday().getWorkingHours());
+        workingPlan.getSaturday().setWorkingHours(workingPlan.getSaturday().getWorkingHours());
+        workingPlan.getSunday().setWorkingHours(workingPlan.getSunday().getWorkingHours());
         workingPlanRepository.save(workingPlan);
     }
-
 
     @Override
     public void addBreakToWorkingPlan(TimePeroid breakToAdd, int planId, String dayOfWeek) {

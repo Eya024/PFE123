@@ -5,7 +5,7 @@ import tn.stb.pfe.models.user.provider.Provider;
 import tn.stb.pfe.models.TimePeroid;
 
 public interface WorkingPlanService {
-    void updateWorkingPlan(WorkingPlan workingPlan);
+    void updateWorkingPlan(Provider workingPlan);
 
     void addBreakToWorkingPlan(TimePeroid breakToAdd, int planId, String dayOfWeek);
 

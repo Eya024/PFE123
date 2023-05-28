@@ -38,7 +38,8 @@ public class Provider extends User {
     @ManyToMany
     @JoinTable(name = "works_providers", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_work"))
     private List<Work> works;
-
+    
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "working_plan_id")
     private WorkingPlan workingPlan;

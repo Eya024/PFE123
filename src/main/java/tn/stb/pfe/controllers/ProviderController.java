@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import tn.stb.pfe.models.WorkingPlan;
 import tn.stb.pfe.models.user.provider.Provider;
 import tn.stb.pfe.services.AppointmentService;
 import tn.stb.pfe.services.UserService;
@@ -51,10 +52,18 @@ public class ProviderController {
 
     @PostMapping("update")
     public ResponseEntity<String> updateProviderWithWorkingPlan(@RequestBody Provider provider) {
-        workingPlanService.updateWorkingPlan(provider.getWorkingPlan());
+        workingPlanService.updateWorkingPlan(provider);
         return ResponseEntity.ok("Provider updated with working plan");
     }
 
+    @GetMapping("/{id}")
+    public WorkingPlan getWorkingPlanByProviderId(@PathVariable("id") int providerId) {
+        return workingPlanService.getWorkingPlanByProviderId(providerId);
+    }
+
+    
+
+    
    /* @GetMapping("/{id}")
     public Model showProviderDetails(@PathVariable("id") int providerId, Model model) {
             model.addAttribute("user", userService.getProviderById(providerId));
