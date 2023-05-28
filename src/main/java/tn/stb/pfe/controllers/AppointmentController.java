@@ -17,14 +17,17 @@ import java.util.List;
 @RequestMapping("/appointments")
 public class AppointmentController {
 
+
+
+    @Autowired
+    private final AppointmentService appointmentService;
     @Autowired
     private final WorkService workService;
     @Autowired
     private final UserService userService;
     @Autowired
-    private final AppointmentService appointmentService;
-    @Autowired
     private final ExchangeService exchangeService;
+
 
     public AppointmentController(WorkService workService, UserService userService, AppointmentService appointmentService, ExchangeService exchangeService) {
         this.workService = workService;
@@ -33,18 +36,72 @@ public class AppointmentController {
         this.exchangeService = exchangeService;
     }
 
+
+    /* Book appointment */
+    //customer
+    @ResponseBody
+    @PostMapping("/book")
+    public void processAppointmentBookingRequest(@RequestParam("workId") int workId, @RequestParam("customerId") int customerId, @RequestParam("start") String start) {
+         appointmentService.bookAppointment(workId, customerId, LocalDateTime.parse(start));
+    }
+
+
+    /* Get Appointments */
+    //admin
     @ResponseBody
     @GetMapping("/all")
     public List<Appointment> showAllAppointments() {
          return appointmentService.getAllAppointments();
     }
 
+    //provider 
+    @ResponseBody
+    @GetMapping("/provider/{id}")
+    public List<Appointment> showProviderAppointments(@PathVariable("id") int providerId) {
+         return appointmentService.getAppointmentByProviderId(providerId);
+    }
+    
+    //customer
+    @ResponseBody
+    @GetMapping("/customer/{id}")
+    public List<Appointment> showCustomerAppointments(@PathVariable("id") int customerId) {
+         return appointmentService.getAppointmentByCustomerId(customerId);
+    }
+
+
+    /** Get apointment by id */
     @ResponseBody
     @GetMapping("/{id}")
     public Appointment showAppointmentDetail(@PathVariable("id") int appointmentId) {
-          return appointmentService.getAppointmentByIdWithAuthorization(appointmentId);
+          return appointmentService.getAppointmentById(appointmentId);
     }
 
+    /* Refuse appointment */
+    //provider
+    @ResponseBody
+    @PostMapping("/refuse")
+    public void processAppointmentRefusalRequest(@RequestParam("appointmentId") int appointmentId) {
+         appointmentService.refuseAppointment(appointmentId);
+    }
+
+    /* Accept appointment */
+    //provider
+    @ResponseBody
+    @PostMapping("/accept")
+    public void processAppointmentAcceptanceRequest(@RequestParam("appointmentId") int appointmentId) {
+         appointmentService.acceptAppointment(appointmentId);
+    }
+
+    /* Cancel appointment */
+    //customer
+    @ResponseBody
+    @PostMapping("/cancel")
+    public void processAppointmentCancellationRequest(@RequestParam("appointmentId") int appointmentId) {
+         appointmentService.cancelAppointment(appointmentId);
+    }
+
+    
+/* 
     
     @ResponseBody
     @PostMapping("/reject")
@@ -73,6 +130,7 @@ public class AppointmentController {
         }
     }
     
+    */
     /* 
     @GetMapping("/reject")
     public String processAppointmentRejectionRequest(@RequestParam("token") String token, Model model) {

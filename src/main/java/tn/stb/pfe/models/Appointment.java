@@ -11,7 +11,6 @@ import tn.stb.pfe.models.user.User;
 import tn.stb.pfe.models.user.customer.Customer;
 import tn.stb.pfe.models.user.provider.Provider;
 import javax.persistence.*;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;

@@ -77,5 +77,10 @@ public interface UserService {
     Collection<Role> getRoleForCorporateCustomers();
 
 
+    User saveUserProvider(Provider user);
+
+    User saveUserCustomer(Customer user);
+
+
 }
 

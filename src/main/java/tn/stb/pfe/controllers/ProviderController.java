@@ -43,8 +43,8 @@ public class ProviderController {
     public Model showProviderDetails(@PathVariable("id") int providerId, Model model) {
             model.addAttribute("user", userService.getProviderById(providerId));
             model.addAttribute("allWorks", workService.getAllWorks());
-            model.addAttribute("numberOfScheduledAppointments", appointmentService.getNumberOfScheduledAppointmentsForUser(providerId));
-            model.addAttribute("numberOfCanceledAppointments", appointmentService.getNumberOfCanceledAppointmentsForUser(providerId));
+            //model.addAttribute("numberOfScheduledAppointments", appointmentService.getNumberOfScheduledAppointmentsForUser(providerId));
+            //model.addAttribute("numberOfCanceledAppointments", appointmentService.getNumberOfCanceledAppointmentsForUser(providerId));
             return model;
         }
 /* 

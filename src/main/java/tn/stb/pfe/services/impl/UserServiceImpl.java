@@ -43,6 +43,28 @@ public class UserServiceImpl implements UserService {
         this.roleRepository = roleRepository;
     }
 
+
+    @Override
+    public Provider saveUserProvider(Provider user) {
+        //Role role = roleRepository.findByName("PROVIDER");
+       // user.getRoles().add(role);
+        userRepository.save(user);
+        providerRepository.save(user);
+        return user;
+    }
+    
+
+    @Override
+    public User saveUserCustomer(Customer user) {
+        //Role role = roleRepository.findByName("CUSTOMER");
+        //user.getRoles().add(role);
+        userRepository.save(user);
+        customerRepository.save(user);
+        return user;
+    }
+
+
+
     @Override
     public boolean userExists(String userName) {
         return userRepository.findByUserName(userName).isPresent();
@@ -148,6 +170,8 @@ public class UserServiceImpl implements UserService {
         roles.add(roleRepository.findByName("ROLE_PROVIDER"));
         return roles;
     }
+
+  
 
 
 }

@@ -9,9 +9,21 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface AppointmentService {
+
+    Appointment refuseAppointment(int appointmentId);
+    Appointment acceptAppointment(int appointmentId);
+    Appointment cancelAppointment(int appointmentId);
+    Appointment bookAppointment(int workId, int customerId, LocalDateTime start) ;
+    Appointment getAppointmentById(int id);
+    List<Appointment> getAllAppointments();
+    List<Appointment> getAppointmentByCustomerId(int customerId);
+    List<Appointment> getAppointmentByProviderId(int providerId);
+    void updateAppointment(Appointment appointment);
+
+
+/* 
     void createNewAppointment(int workId, int providerId, int customerId, LocalDateTime start);
 
-    void updateAppointment(Appointment appointment);
 
     void updateUserAppointmentsStatuses(int userId);
 
@@ -23,13 +35,9 @@ public interface AppointmentService {
 
     Appointment getAppointmentByIdWithAuthorization(int id);
 
-    Appointment getAppointmentById(int id);
 
-    List<Appointment> getAllAppointments();
 
-    List<Appointment> getAppointmentByCustomerId(int customerId);
 
-    List<Appointment> getAppointmentByProviderId(int providerId);
 
     List<Appointment> getAppointmentsByProviderAtDay(int providerId, LocalDate day);
 
@@ -51,7 +59,7 @@ public interface AppointmentService {
 
     boolean isCustomerAllowedToRejectAppointment(int customerId, int appointmentId);
 
-    void requestAppointmentRejection(int appointmentId, int customerId);
+    boolean requestAppointmentRejection(int appointmentId, int customerId);
 
     boolean requestAppointmentRejection(String token);
 
@@ -67,5 +75,7 @@ public interface AppointmentService {
 
     int getNumberOfScheduledAppointmentsForUser(int userId);
 
-    boolean isAvailable(int workId, int providerId, int customerId, LocalDateTime start);
+    boolean isAvailable(int workId, int providerId, int customerId, LocalDateTime start);*/
+
+
 }
