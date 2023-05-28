@@ -85,24 +85,24 @@ public class AppointmentController {
     /* Refuse appointment */
     //provider
     @ResponseBody
-    @PostMapping("/refuse")
-    public void processAppointmentRefusalRequest(@RequestParam("appointmentId") int appointmentId) {
+    @PostMapping("/refuse/{appointmentId}")
+    public void processAppointmentRefusalRequest(@PathVariable("appointmentId") int appointmentId) {
          appointmentService.refuseAppointment(appointmentId);
     }
 
     /* Accept appointment */
     //provider
     @ResponseBody
-    @PostMapping("/accept")
-    public void processAppointmentAcceptanceRequest(@RequestParam("appointmentId") int appointmentId) {
+    @PostMapping("/accept/{appointmentId}")
+    public void processAppointmentAcceptanceRequest(@PathVariable("appointmentId") int appointmentId) {
          appointmentService.acceptAppointment(appointmentId);
     }
 
     /* Cancel appointment */
     //customer
     @ResponseBody
-    @PostMapping("/cancel")
-    public void processAppointmentCancellationRequest(@RequestParam("appointmentId") int appointmentId) {
+    @PostMapping("/cancel/{appointmentId}")
+    public void processAppointmentCancellationRequest(@PathVariable("appointmentId") int appointmentId) {
          appointmentService.cancelAppointment(appointmentId);
     }
 
