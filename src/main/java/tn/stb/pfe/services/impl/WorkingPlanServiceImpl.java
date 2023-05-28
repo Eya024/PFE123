@@ -1,10 +1,16 @@
 package tn.stb.pfe.services.impl;
 
 
+import java.time.LocalTime;
+
 import org.springframework.stereotype.Service;
+
+import tn.stb.pfe.models.DayPlan;
 import tn.stb.pfe.models.TimePeroid;
 import tn.stb.pfe.models.WorkingPlan;
+import tn.stb.pfe.models.user.provider.Provider;
 import tn.stb.pfe.repositories.WorkingPlanRepository;
+import tn.stb.pfe.repositories.user.UserRepository;
 import tn.stb.pfe.services.WorkingPlanService;
 
 
@@ -12,9 +18,49 @@ import tn.stb.pfe.services.WorkingPlanService;
 public class WorkingPlanServiceImpl implements WorkingPlanService {
 
     private final WorkingPlanRepository workingPlanRepository;
+    private final UserRepository providerRepository;
 
-    public WorkingPlanServiceImpl(WorkingPlanRepository workingPlanRepository) {
+    public WorkingPlanServiceImpl(WorkingPlanRepository workingPlanRepository, UserRepository providRepository) {
         this.workingPlanRepository = workingPlanRepository;
+        this.providerRepository = providRepository;
+    }
+
+
+
+    public void generateAndSaveWorkingPlanForProvider(Provider provider) {
+        // Generate the working plan
+        WorkingPlan workingPlan = new WorkingPlan();
+
+        // Create DayPlan instances for each day of the week
+        DayPlan mondayPlan = new DayPlan();
+        DayPlan tuesdayPlan = new DayPlan();
+        DayPlan wednesdayPlan = new DayPlan();
+        DayPlan thursdayPlan = new DayPlan();
+        DayPlan fridayPlan = new DayPlan();
+        DayPlan saturdayPlan = new DayPlan();
+        DayPlan sundayPlan = new DayPlan();
+
+        // Set the working hours for each DayPlan
+        mondayPlan.setWorkingHours(new TimePeroid(LocalTime.parse("08:00"), LocalTime.parse("17:00")));
+        tuesdayPlan.setWorkingHours(new TimePeroid(LocalTime.parse("09:00"), LocalTime.parse("18:00")));
+        wednesdayPlan.setWorkingHours(new TimePeroid(LocalTime.parse("08:30"), LocalTime.parse("16:30")));
+        thursdayPlan.setWorkingHours(new TimePeroid(LocalTime.parse("09:30"), LocalTime.parse("17:30")));
+        fridayPlan.setWorkingHours(new TimePeroid(LocalTime.parse("08:00"), LocalTime.parse("16:00")));
+        saturdayPlan.setWorkingHours(new TimePeroid(LocalTime.parse("10:00"), LocalTime.parse("15:00")));
+        sundayPlan.setWorkingHours(new TimePeroid(LocalTime.parse("12:00"), LocalTime.parse("18:00")));
+
+        // Set the DayPlan instances in the WorkingPlan
+        workingPlan.setMonday(mondayPlan);
+        workingPlan.setTuesday(tuesdayPlan);
+        workingPlan.setWednesday(wednesdayPlan);
+        workingPlan.setThursday(thursdayPlan);
+        workingPlan.setFriday(fridayPlan);
+        workingPlan.setSaturday(saturdayPlan);
+        workingPlan.setSunday(sundayPlan);
+
+        // Save the working plan to the database using the workingPlanRepository
+        workingPlanRepository.save(workingPlan);
+        providerRepository.save(provider);
     }
 
     @Override

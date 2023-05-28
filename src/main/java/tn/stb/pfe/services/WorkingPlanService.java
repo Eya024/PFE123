@@ -1,6 +1,7 @@
 package tn.stb.pfe.services;
 
 import tn.stb.pfe.models.WorkingPlan;
+import tn.stb.pfe.models.user.provider.Provider;
 import tn.stb.pfe.models.TimePeroid;
 
 public interface WorkingPlanService {
@@ -11,4 +12,8 @@ public interface WorkingPlanService {
     void deleteBreakFromWorkingPlan(TimePeroid breakToDelete, int planId, String dayOfWeek);
 
     WorkingPlan getWorkingPlanByProviderId(int providerId);
+
+    
+
+    public void generateAndSaveWorkingPlanForProvider(Provider provider) ;
 }

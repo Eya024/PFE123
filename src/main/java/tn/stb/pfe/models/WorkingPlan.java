@@ -24,9 +24,7 @@ public class WorkingPlan {
     @Column(name = "id_provider")
     private int id;
 
-    @MapsId
-    @OneToOne
-    @JoinColumn(name = "id_provider")
+    @OneToOne(mappedBy = "workingPlan", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Provider provider;
 
     @Type(type = "json")
