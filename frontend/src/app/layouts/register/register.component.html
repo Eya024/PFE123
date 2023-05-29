@@ -1,0 +1,115 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                    
+                <!-- Register Content -->
+                <div class="account-content">
+                    <div class="row align-items-center justify-content-center">
+
+                        <div class="col-md-12 col-lg-6 login-right">
+                            <div class="login-header">
+                                <h3>Customer Register <a [routerLink]="['/homepage/register-provider']">Are you a Provider?</a></h3>
+                            </div>
+                            
+                            <!-- Register Form -->
+
+                            <form
+                            *ngIf="!isSuccessful"
+                            name="form"
+                            (ngSubmit)="f.form.valid && onSubmit()"
+                            #f="ngForm"
+                            novalidate
+                          >
+                            <div class="form-group form-focus">
+                                <input
+                                type="text"
+                                class="form-control floating"
+                                name="username"
+                                [(ngModel)]="form.username"
+                                required
+                                minlength="3"
+                                maxlength="20"
+                                #username="ngModel"
+                                [ngClass]="{ 'is-invalid': f.submitted && username.errors }"
+                              />
+                              <label class="focus-label" for="username">Username</label>
+                           
+                              <div class="invalid-feedback" *ngIf="username.errors && f.submitted">
+                                <div *ngIf="username.errors['required']">Username is required</div>
+                                <div *ngIf="username.errors['minlength']">
+                                  Username must be at least 3 characters
+                                </div>
+                                <div *ngIf="username.errors['maxlength']">
+                                  Username must be at most 20 characters
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group form-focus">
+                                <input
+                                type="email"
+                                class="form-control floating"
+                                name="email"
+                                [(ngModel)]="form.email"
+                                required
+                                email
+                                #email="ngModel"
+                                [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
+                              />
+                              <label class="focus-label" for="email">Email</label>
+                        
+                              <div class="invalid-feedback" *ngIf="email.errors && f.submitted">
+                                <div *ngIf="email.errors['required']">Email is required</div>
+                                <div *ngIf="email.errors['email']">
+                                  Email must be a valid email address
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group form-focus">
+                                <input
+                                type="password"
+                                class="form-control floating"
+                                name="password"
+                                [(ngModel)]="form.password"
+                                required
+                                minlength="6"
+                                #password="ngModel"
+                                [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
+                              />
+                              <label class="focus-label" for="password">Password</label>
+                   
+                              <div class="invalid-feedback" *ngIf="password.errors && f.submitted">
+                                <div *ngIf="password.errors['required']">Password is required</div>
+                                <div *ngIf="password.errors['minlength']">
+                                  Password must be at least 6 characters
+                                </div>
+                              </div>
+                            </div>
+                            <div class="text-right">
+                                <a class="forgot-link" href="login.html">Already have an account?</a>
+                            </div>
+                            <div class="form-group form-focus">
+                              <button class="btn btn-primary btn-block btn-lg login-btn">Sign Up</button>
+                            </div>
+                      
+                            <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                              Signup failed!<br />{{ errorMessage }}
+                            </div>
+                          </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Register Content -->
+                    
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
