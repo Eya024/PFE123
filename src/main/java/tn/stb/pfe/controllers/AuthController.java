@@ -92,7 +92,11 @@ public class AuthController {
       return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
     }
 
-    System.out.println(signUpRequest.getRole());
+    System.out.println("**************************************");
+    
+    RoleStatus roleStatus = RoleStatus.valueOf(signUpRequest.getRole().iterator().next());
+    System.out.println(roleStatus);
+   // signUpRequest.getRole().forEach( role -> System.out.println(role))  ;
     // Create new user's account
     User user = new User(signUpRequest.getUsername(),
     signUpRequest.getEmail(),
@@ -104,35 +108,12 @@ public class AuthController {
     signUpRequest.getCity(),
     signUpRequest.getPostCode());
 
-    Set<String> strRoles = signUpRequest.getRole();
+    //Set<String> strRoles = signUpRequest.getRole();
     Set<Role> roles = new HashSet<>();
 
-    if (strRoles == null) {
-      Role userRole = roleRepository.findByName(RoleStatus.CUSTOMER)
+      Role userRole = roleRepository.findByName(roleStatus)
           .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
       roles.add(userRole);
-    } else {
-      strRoles.forEach(role -> {
-        switch (role) {
-        case "admin":
-          Role adminRole = roleRepository.findByName(RoleStatus.ADMIN)
-              .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-          roles.add(adminRole);
-
-          break;
-        case "mod":
-          Role modRole = roleRepository.findByName(RoleStatus.PROVIDER)
-              .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-          roles.add(modRole);
-
-          break;
-        default:
-          Role userRole = roleRepository.findByName(RoleStatus.CUSTOMER)
-              .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-          roles.add(userRole);
-        }
-      });
-    }
 
     user.setRoles(roles);
     userRepository.save(user);

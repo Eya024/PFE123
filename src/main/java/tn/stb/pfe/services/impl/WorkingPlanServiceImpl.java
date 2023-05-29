@@ -80,6 +80,8 @@ public class WorkingPlanServiceImpl implements WorkingPlanService {
     public void updateWorkingPlan(Provider updateData) {
 
         WorkingPlan workingPlan = updateData.getWorkingPlan();
+        System.out.println("*************************************");
+        System.out.println(updateData);
         workingPlan.getMonday().setWorkingHours(workingPlan.getMonday().getWorkingHours());
         workingPlan.getTuesday().setWorkingHours(workingPlan.getTuesday().getWorkingHours());
         workingPlan.getWednesday().setWorkingHours(workingPlan.getWednesday().getWorkingHours());
