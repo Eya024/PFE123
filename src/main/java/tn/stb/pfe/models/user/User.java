@@ -22,7 +22,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "users")
+@Table(name = "users",
+       uniqueConstraints = {
+           @UniqueConstraint(columnNames = "username"),
+           @UniqueConstraint(columnNames = "email")
+       })
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User implements Serializable {
 
@@ -31,7 +35,7 @@ public class User implements Serializable {
     private Integer id;
 
     @Column(name = "username")
-    private String userName;
+    private String username;
 
     @Column(name = "password")
     private String password;
@@ -72,6 +76,19 @@ public class User implements Serializable {
             }
         }
         return false;
+    }
+
+
+    public User(String username, String email, String password, String firstName, String lastName, String mobile,String street, String city, String postCode) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.mobile = mobile;
+        this.street = street;
+        this.city = city;
+        this.postcode = postCode;
     }
 
 }

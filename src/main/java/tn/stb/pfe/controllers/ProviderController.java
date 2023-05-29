@@ -2,14 +2,9 @@ package tn.stb.pfe.controllers;
 
 
 import java.util.List;
-
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import tn.stb.pfe.models.WorkingPlan;
 import tn.stb.pfe.models.user.provider.Provider;
 import tn.stb.pfe.services.AppointmentService;
@@ -19,8 +14,9 @@ import tn.stb.pfe.services.WorkingPlanService;
 
 
 
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true", maxAge = 3600)
 @RestController
-@RequestMapping("/providers")
+@RequestMapping("/api/providers")
 public class ProviderController {
 
     private final UserService userService;

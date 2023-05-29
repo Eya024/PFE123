@@ -1,8 +1,8 @@
 package tn.stb.pfe.controllers;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import tn.stb.pfe.models.user.User;
 import tn.stb.pfe.models.user.customer.Customer;
 import tn.stb.pfe.models.user.provider.Provider;
 import tn.stb.pfe.services.UserService;
 
 
-@RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true", maxAge = 3600)
+@RequestMapping("/api/users")
 @RestController
 public class UserController {
 

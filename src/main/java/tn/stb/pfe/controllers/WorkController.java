@@ -1,21 +1,17 @@
 package tn.stb.pfe.controllers;
 
 import java.util.List;
-
 import org.springframework.http.MediaType;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import tn.stb.pfe.models.Work;
 import tn.stb.pfe.models.user.User;
-import tn.stb.pfe.models.user.provider.Provider;
-import tn.stb.pfe.repositories.WorkRepository;
 import tn.stb.pfe.services.UserService;
 import tn.stb.pfe.services.WorkService;
 
 
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true", maxAge = 3600)
 @RestController
-@RequestMapping("/works")
+@RequestMapping("/api/works")
 public class WorkController {
 
     private final WorkService workService;

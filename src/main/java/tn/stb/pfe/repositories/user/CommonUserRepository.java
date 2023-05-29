@@ -14,7 +14,7 @@ import java.util.Optional;
 @NoRepositoryBean
 public interface CommonUserRepository<T extends User> extends JpaRepository<T, Integer> {
 
-    Optional<T> findByUserName(String userName);
+    Optional<T> findByUsername(String username);
 
     @Query("select t from #{#entityName} t inner join t.roles r where r.name in :roleName")
     List<T> findByRoleName(@Param("roleName") String roleName);

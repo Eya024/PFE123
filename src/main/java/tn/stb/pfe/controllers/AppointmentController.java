@@ -1,23 +1,19 @@
 package tn.stb.pfe.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import tn.stb.pfe.models.Appointment;
 import tn.stb.pfe.services.AppointmentService;
 import tn.stb.pfe.services.ExchangeService;
 import tn.stb.pfe.services.UserService;
 import tn.stb.pfe.services.WorkService;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import javax.websocket.server.PathParam;
-
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/appointments")
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true", maxAge = 3600)
+@RequestMapping("/api/appointments")
 public class AppointmentController {
 
 

@@ -9,7 +9,7 @@ import tn.stb.pfe.models.user.customer.CorporateCustomer;
 import tn.stb.pfe.models.user.customer.Customer;
 import tn.stb.pfe.models.user.customer.RetailCustomer;
 import tn.stb.pfe.models.user.provider.Provider;
-import tn.stb.pfe.repositories.RoleRepository;
+import tn.stb.pfe.repositories.user.RoleRepository;
 import tn.stb.pfe.repositories.user.UserRepository;
 import tn.stb.pfe.repositories.user.customer.CorporateCustomerRepository;
 import tn.stb.pfe.repositories.user.customer.CustomerRepository;
@@ -63,11 +63,9 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-
-
     @Override
     public boolean userExists(String userName) {
-        return userRepository.findByUserName(userName).isPresent();
+        return userRepository.findByUsername(userName).isPresent();
     }
 
     @Override
@@ -114,7 +112,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByUsername(String userName) {
-        return userRepository.findByUserName(userName).orElseThrow(UserNotFoundException::new);
+        return userRepository.findByUsername(userName).orElseThrow(UserNotFoundException::new);
     }
 
     @Override
@@ -146,7 +144,7 @@ public class UserServiceImpl implements UserService {
     public List<Provider> getProvidersByWork(Work work) {
         return providerRepository.findByWorks(work);
     }
-
+/* 
     @Override
     public Collection<Role> getRolesForRetailCustomer() {
         HashSet<Role> roles = new HashSet();
@@ -169,6 +167,27 @@ public class UserServiceImpl implements UserService {
         HashSet<Role> roles = new HashSet();
         roles.add(roleRepository.findByName("ROLE_PROVIDER"));
         return roles;
+    }*/
+
+
+    @Override
+    public Collection<Role> getRolesForProvider() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getRolesForProvider'");
+    }
+
+
+    @Override
+    public Collection<Role> getRolesForRetailCustomer() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getRolesForRetailCustomer'");
+    }
+
+
+    @Override
+    public Collection<Role> getRoleForCorporateCustomers() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getRoleForCorporateCustomers'");
     }
 
   

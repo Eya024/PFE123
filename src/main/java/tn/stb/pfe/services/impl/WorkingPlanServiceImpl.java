@@ -68,7 +68,7 @@ public class WorkingPlanServiceImpl implements WorkingPlanService {
         workingPlan.setSunday(sundayPlan);
 
         // Generate appointments based on the working plan
-          List<Appointment> appointments = generateAppointments(workingPlan);
+        generateAppointments(workingPlan);
 
         // Save the working plan to the database using the workingPlanRepository
         workingPlanRepository.save(workingPlan);
